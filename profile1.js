@@ -1,7 +1,7 @@
 var connection = require('./../config');
 var express=require('express');
-var deasync = require('deasync');
-var Q = require('Q');
+//var deasync = require('deasync');
+//var Q = require('Q');
 var router=express.Router();
 
 function get_data(user_id,callback){
@@ -19,9 +19,9 @@ function get_data(user_id,callback){
 
 //user_id will come from session value
 module.exports.profile= deasync (function(req,res){
-	var user_id=19;
-	if(1){
-	//var user_id=req.session.user_id;
+	//var user_id=19;
+	if(req.session.user_id){
+	var user_id=req.session.user_id;
 	var ans;
 	var answer;
 	connection.query("select user_type,email,phone,age,gender,firstname,lastname from login where user_id=?",[user_id],function(errormain,resultmain,fieldmain){
